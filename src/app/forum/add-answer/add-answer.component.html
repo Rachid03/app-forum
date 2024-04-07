@@ -1,0 +1,26 @@
+<div>
+  <div class="ms-4 mt-2">
+    <a (click)="navigateBack()" class="text-decoration-none">
+      <i class="fas fa-arrow-left fa-2x back-icon"></i> <!-- Font Awesome icon for back -->
+    </a>
+  </div>
+
+  <div class="container d-flex justify-content-center align-items-center" style="height: 90vh; width: 90vw">
+    <div class="rounded-lg p-5 bg-body-tertiary" style="max-width: 600px; width: 100%">
+      <h4 class="text-uppercase fw-bold mb-4">Ajouter une Réponse</h4>
+      <form [formGroup]="answerForm" (ngSubmit)="submitAnswer()">
+        <div class="form-group mb-4">
+          <textarea formControlName="answer" class="form-control rounded-lg" rows="10" placeholder="Écrire..."></textarea>
+          <div *ngIf="answerForm.get('answer').invalid && (answerForm.get('answer').dirty || answerForm.get('answer').touched)" class="text-danger">
+            Détails de la réponse requis
+          </div>
+        </div>
+        <div>
+          <button [disabled]="answerForm.invalid" class="btn btn-primary btn-block" type="submit">
+            <i class="fas fa-plus mr-2"></i> Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

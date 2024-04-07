@@ -1,0 +1,200 @@
+openapi: 3.0.0
+info:
+  title: Question and Answer API
+  version: 1.0.0
+  description: APIs for managing questions and answers
+paths:
+  /api/questions:
+    get:
+      summary: Get all questions
+      responses:
+        '200':
+          description: OK
+
+    post:
+      summary: Add a new question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Question'
+      responses:
+        '200':
+          description: OK
+
+  /questions/{questionId}:
+    get:
+      summary: Get a question by ID
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          description: ID of the question to retrieve
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+
+    delete:
+      summary: Delete a question
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          description: ID of the question to delete
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+
+    patch:
+      summary: Update a question
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          description: ID of the question to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Question'
+      responses:
+        '200':
+          description: OK
+
+  /questions/{questionId}/answers:
+    get:
+      summary: Get all answers for a question
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          description: ID of the question to retrieve answers for
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+
+    post:
+      summary: Add an answer to a question
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          description: ID of the question to add an answer to
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer'
+      responses:
+        '200':
+          description: OK
+
+  /questions/{questionId}/answers/{answerId}:
+    get:
+      summary: Get an answer to a question by ID
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          description: ID of the question containing the answer
+          schema:
+            type: integer
+        - in: path
+          name: answerId
+          required: true
+          description: ID of the answer to retrieve
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+
+    delete:
+      summary: Delete an answer to a question
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          description: ID of the question containing the answer
+          schema:
+            type: integer
+        - in: path
+          name: answerId
+          required: true
+          description: ID of the answer to delete
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+
+    patch:
+      summary: Update an answer to a question
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          description: ID of the question containing the answer
+          schema:
+            type: integer
+        - in: path
+          name: answerId
+          required: true
+          description: ID of the answer to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Answer'
+      responses:
+        '200':
+          description: OK
+
+  /questions/search:
+    get:
+      summary: Search questions
+      parameters:
+        - in: query
+          name: query
+          required: true
+          description: Search query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        content:
+          type: string
+
+    Answer:
+      type: object
+      properties:
+        id:
+          type: integer
+        content:
+          type: string

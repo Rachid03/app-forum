@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
+  "input": "src/app/api-yaml-open-api/question-answer-swagger-api.yaml",
+  "output": "src/app/service/generated-angular-services/question-answer-api",
+  "module": "QuestionAnswerApi",
+  "ignoreUnusedModels": true,
+  "minParamsForContainer": 2,
+  "sortParams": "desc",
+  "defaultTag": "Api",
+  "removeStaleFiles": true,
+  "modelIndex": true,
+  "serviceIndex": true,
+  "apiModule": true,
+  "enumModule": true,
+  "generateExamples": false,
+  "camelCase": false,
+  "customFileSuffix": {
+    "model": "",
+    "example": ".example",
+    "service": ".service"
+  }
+}

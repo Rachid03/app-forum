@@ -1,0 +1,43 @@
+<div>
+  <div class="ms-4 mt-2">
+    <a routerLink="/consultationmessages" class="text-decoration-none">
+      <i class="fas fa-arrow-left fa-2x back-icon" ></i> <!-- Font Awesome icon for back -->
+    </a>
+  </div>
+<div class="container d-flex flex-column justify-content-center align-items-center" style="height: 90vh; width: 90vw">
+
+  <div class="rounded-lg p-5 bg-body-tertiary" style="max-width: 600px; width: 100%;max-height: 1000px;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="text-uppercase fw-bold mb-0">Ajouter une Question</h4>
+      <div></div> <!-- Placeholder for spacing -->
+    </div>
+    <form [formGroup]="questionForm" (ngSubmit)="submitForm()">
+      <div class="form-group mb-3">
+        <input formControlName="title" class="form-control rounded-lg py-3" type="text" placeholder="Titre de votre question ici..." />
+        <div *ngIf="questionForm.get('title').invalid && (questionForm.get('title').dirty || questionForm.get('title').touched)" class="text-danger">
+          Titre requis
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <textarea formControlName="questionDetails" class="form-control rounded-lg" rows="10" placeholder="Détails de la question..."></textarea>
+        <div *ngIf="questionForm.get('questionDetails').invalid && (questionForm.get('questionDetails').dirty || questionForm.get('questionDetails').touched)" class="text-danger">
+          Détails de la question requis
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" formControlName="anonymous" id="anonymous">
+          <label class="form-check-label " for="anonymous" >
+            Anonyme
+          </label>
+        </div>
+      </div>
+      <div>
+        <button [disabled]="questionForm?.invalid" class="btn btn-primary btn-block" type="submit">
+          <i class="fas fa-plus mr-2"></i> Ajouter
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
